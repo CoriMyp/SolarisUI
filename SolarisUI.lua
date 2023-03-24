@@ -376,7 +376,7 @@ function SolarisLib:New(Config)
         RefreshList(Sounds)
 
         local runservice_conn1 = game:GetService("RunService").RenderStepped:Connect(function()
-            if UI_Destroy and runservice_conn1 then runservice_conn1:Disconnect() end
+            if UI_Destroy and runservice_conn1 then runservice_conn1:Disconnect(); return end
             local time = math.floor(Sound.TimePosition)
             local timesecs = time % 60
             local timemins = math.floor(time / 60)
@@ -1200,7 +1200,7 @@ function SolarisLib:New(Config)
                 TextboxFrame.Name = text .. "element"
 
                 local textbox_conn1 = TextboxFrame.Box.Changed:Connect(function()
-		    if UI_Destroy and textbox_conn1 then textbox_conn1:Disconnect() end
+		    if UI_Destroy and textbox_conn1 then textbox_conn1:Disconnect(); return end
                     TextboxFrame.Box.Size = UDim2.new(0,TextboxFrame.Box.TextBounds.X + 16,0,22)
                 end)
                 TextboxFrame.Box.PlaceholderText = "                  "
@@ -1213,7 +1213,7 @@ function SolarisLib:New(Config)
 				
 
                 local textbox_conn2 = TextboxFrame.Box.FocusLost:Connect(function()
-		    if UI_Destroy and textbox_conn2 then textbox_conn2:Disconnect() end
+		    if UI_Destroy and textbox_conn2 then textbox_conn2:Disconnect(); return end
                     local txt = TextboxFrame.Box.Text
                     if disappear then
                         TextboxFrame.Box.Text = ""
