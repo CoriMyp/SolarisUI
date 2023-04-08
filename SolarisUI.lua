@@ -833,6 +833,10 @@ function SolarisLib:New(Config)
                        Button.ButtonText.TextColor3 = SolarisLib.Themes[SolarisLib.Settings.Theme].TextColor
                     end
                 end)
+				
+		function Button:SetName(text)
+		    Button.ButtonText.Text = text
+		end
 
             end    
             function ItemHold:Toggle(text,def,flag,callback)
