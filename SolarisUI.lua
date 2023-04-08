@@ -810,34 +810,35 @@ function SolarisLib:New(Config)
             local ItemHold = {}
             function ItemHold:Button(text,callback)
                 local Holding = false
-                local Button = game:GetObjects("rbxassetid://6937142338")[1]
-                Button.Parent = Section
-                Button.Name = text .. "element"
-                Button.ButtonText.Text = text
-                Button.ClipsDescendants = true
+                local Button, ButtonMain = {}, game:GetObjects("rbxassetid://6937142338")[1]
+                ButtonMain.Parent = Section
+                ButtonMain.Name = text .. "element"
+                ButtonMain.ButtonText.Text = text
+                ButtonMain.ClipsDescendants = true
                 
-                Button.MouseButton1Click:Connect(function()
+                ButtonMain.MouseButton1Click:Connect(function()
                     callback()
                     Ripple(Button)
                 end)
-                Button.MouseEnter:Connect(function()
+                ButtonMain.MouseEnter:Connect(function()
                     Holding = true
                 end)
-                Button.MouseLeave:Connect(function()
+                ButtonMain.MouseLeave:Connect(function()
                     Holding = false
                 end)
 
                 spawn(function()
                     while wait() and not UI_Destroy do
-                       Button.BackgroundColor3 = Holding and SolarisLib.Themes[SolarisLib.Settings.Theme].ButtonHold or SolarisLib.Themes[SolarisLib.Settings.Theme].Button
-                       Button.ButtonText.TextColor3 = SolarisLib.Themes[SolarisLib.Settings.Theme].TextColor
+                       ButtonMain.BackgroundColor3 = Holding and SolarisLib.Themes[SolarisLib.Settings.Theme].ButtonHold or SolarisLib.Themes[SolarisLib.Settings.Theme].Button
+                       ButtonMain.ButtonText.TextColor3 = SolarisLib.Themes[SolarisLib.Settings.Theme].TextColor
                     end
                 end)
 				
 		function Button:SetName(text)
-		    Button.ButtonText.Text = text
+		    ButtonMain.ButtonText.Text = text
 		end
-
+		
+		return Button
             end    
             function ItemHold:Toggle(text,def,flag,callback)
                 local Toggle,ToggleMain = {Value = false}, game:GetObjects("rbxassetid://6963155498")[1]
