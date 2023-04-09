@@ -818,7 +818,7 @@ function SolarisLib:New(Config)
                 
                 ButtonMain.MouseButton1Click:Connect(function()
                     callback()
-                    Ripple(Button)
+                    Ripple(ButtonMain)
                 end)
                 ButtonMain.MouseEnter:Connect(function()
                     Holding = true
